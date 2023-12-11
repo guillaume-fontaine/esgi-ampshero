@@ -2,8 +2,10 @@ var express = require('express');
 var router = express.Router();
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+router.get('/', async function(req, res, next) {
+  const {db} = req.app.locals;
+  const users = await db.collection('users').find().toArray();
+  res.render('users/list', {users});
 });
 
 router.get('/profile/:username', (req, res) => {

@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
+const User = require('../models/User');
 
 /* GET users listing. */
 router.get('/', async function(req, res, next) {
-  const {db} = req.app.locals;
-  const users = await db.collection('users').find().toArray();
+  const users = await User.find();
   res.render('users/list', {users});
 });
 
@@ -16,10 +16,18 @@ router.get('/profile/:username', (req, res) => {
 router.get('/create', (req, res) => res.render('users/form'));
 
 router.post('/', async (req, res) => {
-  const {db} = req.app.locals;
   const {username, email, password} = req.body;
-  const user = await db.collection('users').insertOne({ username: username, email: email, password: password });
-  console.log(user);
+  try {
+    const user = await User.create({username, email, password});
+    console.log(user);
+  } catch (e) {
+    if (e.code === 11000) {
+      console.log('duplicate key error');
+    } else {
+      console.log(e);
+    }
+  }
+
   res.redirect('/users/profile/' + username);
 });
 

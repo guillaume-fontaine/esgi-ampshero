@@ -7,6 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('amps-hero:server');
 var http = require('http');
+const MongoClient = require('mongodb').MongoClient;
 
 /**
  * Get port from environment and store in Express.
@@ -25,7 +26,14 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
+MongoClient.connect('mongodb://localhost:27017')
+  .then(client => {
+    app.locals.db = client.db('ampshero'); // Enregistrement de la connexion dans les variables locales
+    server.listen(port); // Démarrer le serveur une fois la connexion ouverte
+  })
+  .catch(err => console.log(err))
+;
+
 server.on('error', onError);
 server.on('listening', onListening);
 

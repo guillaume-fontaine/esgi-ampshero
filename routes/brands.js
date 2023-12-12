@@ -7,8 +7,20 @@ const router = express.Router();
 router.get('/', async (req, res) => {
   // #swagger.summary = 'Get all brands'
   // #swagger.description = 'Get all brands with name and logo'
-  const brands = await Brand.find();
-  res.json(brands);
+  // #swagger.parameters['page'] = { description: 'Page number (default 0)', type: 'number' }
+  // #swagger.parameters['limit'] = { description: 'Elements per page (default 2)', type: 'number' }
+  let { page, limit } = req.query;
+  page = isNaN(page) ? 1 : parseInt(page);
+  limit = isNaN(limit) ? 2 : parseInt(limit);
+
+  const brands = await Brand.find().limit(limit).skip((page - 1) * limit);
+  const total = await Brand.countDocuments();
+
+  res.json({
+    page,
+    "hydra:totalItem": total,
+    brands
+  });
 });
 
 // POST /brands Créer une nouvelle marque

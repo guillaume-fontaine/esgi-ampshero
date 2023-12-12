@@ -96,6 +96,20 @@
         ],
         "summary": "Get all brands",
         "description": "Get all brands with name and logo",
+        "parameters": [
+          {
+            "name": "page",
+            "description": "Page number (default 0)",
+            "type": "number",
+            "in": "query"
+          },
+          {
+            "name": "limit",
+            "description": "Elements per page (default 2)",
+            "type": "number",
+            "in": "query"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -113,6 +127,9 @@
           },
           "400": {
             "description": "Bad Request"
+          },
+          "402": {
+            "description": "Payment Required"
           }
         }
       }

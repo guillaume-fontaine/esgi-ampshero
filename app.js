@@ -13,6 +13,7 @@ var usersRouter = require('./routes/users');
 const brandsRouter = require('./routes/brands');
 const amplifiersRouter = require('./routes/amplifiers');
 const presetsRouter = require('./routes/presets');
+const uploadsRouter = require('./routes/uploads');
 
 var app = express();
 
@@ -35,6 +36,7 @@ app.use('/users', usersRouter /* #swagger.tags = ['Users'] */);
 app.use('/brands', brandsRouter /* #swagger.tags = ['Brands'] */);
 app.use('/amplifiers', amplifiersRouter /* #swagger.tags = ['Amplifiers'] */);
 app.use('/presets', presetsRouter /* #swagger.tags = ['Presets'] */);
+app.use('/uploads', uploadsRouter /* #swagger.tags = ['Uploads'] */);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

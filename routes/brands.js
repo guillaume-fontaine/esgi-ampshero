@@ -1,4 +1,5 @@
 const express = require('express');
+const passport = require("passport");
 const Brand = require("../models/Brand");
 const router = express.Router();
 
@@ -11,7 +12,10 @@ router.get('/', async (req, res) => {
 });
 
 // POST /brands Créer une nouvelle marque
-router.post('/', async (req, res) => {
+router.post('/', passport.authenticate('jwt', { session: false }), async (req, res) => {
+  if (req.user.role !== 'admin') {
+    return res.status(402).json({ error: 'Unauthorized' });
+  }
   try {
     const brand = await Brand.create(req.body);
     res.status(201).json(brand);

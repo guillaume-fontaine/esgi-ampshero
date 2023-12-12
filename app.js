@@ -3,7 +3,12 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const passportMiddleware = require("./middlewares/passport")();
+const User = require("./models/User");
 
+const authRouter = require('./routes/auth');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const brandsRouter = require('./routes/brands');
@@ -20,7 +25,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(passportMiddleware.initialize());
+passport.use(new LocalStrategy(User.authenticate()));
+
 app.use('/', indexRouter /* #swagger.ignore = true */);
+app.use('/', authRouter /* #swagger.ignore = true */);
 app.use('/users', usersRouter /* #swagger.tags = ['Users'] */);
 app.use('/brands', brandsRouter /* #swagger.tags = ['Brands'] */);
 

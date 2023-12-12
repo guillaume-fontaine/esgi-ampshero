@@ -11,18 +11,11 @@
     "http"
   ],
   "paths": {
-    "/": {
-      "get": {
-        "description": "",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
     "/users/": {
       "get": {
+        "tags": [
+          "Users"
+        ],
         "description": "",
         "responses": {
           "default": {
@@ -31,6 +24,9 @@
         }
       },
       "post": {
+        "tags": [
+          "Users"
+        ],
         "description": "",
         "parameters": [
           {
@@ -61,6 +57,9 @@
     },
     "/users/profile/{username}": {
       "get": {
+        "tags": [
+          "Users"
+        ],
         "description": "",
         "parameters": [
           {
@@ -79,6 +78,9 @@
     },
     "/users/create": {
       "get": {
+        "tags": [
+          "Users"
+        ],
         "description": "",
         "responses": {
           "default": {
@@ -89,7 +91,11 @@
     },
     "/brands/": {
       "get": {
-        "description": "",
+        "tags": [
+          "Brands"
+        ],
+        "summary": "Get all brands",
+        "description": "Get all brands with name and logo",
         "responses": {
           "200": {
             "description": "OK"
@@ -97,6 +103,9 @@
         }
       },
       "post": {
+        "tags": [
+          "Brands"
+        ],
         "description": "",
         "responses": {
           "201": {
@@ -110,6 +119,9 @@
     },
     "/brands/{id}": {
       "get": {
+        "tags": [
+          "Brands"
+        ],
         "description": "",
         "parameters": [
           {
@@ -129,6 +141,9 @@
         }
       },
       "put": {
+        "tags": [
+          "Brands"
+        ],
         "description": "",
         "parameters": [
           {
@@ -163,6 +178,9 @@
         }
       },
       "patch": {
+        "tags": [
+          "Brands"
+        ],
         "description": "",
         "parameters": [
           {
@@ -182,6 +200,9 @@
         }
       },
       "delete": {
+        "tags": [
+          "Brands"
+        ],
         "description": "",
         "parameters": [
           {

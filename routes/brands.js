@@ -4,6 +4,8 @@ const router = express.Router();
 
 // GET /brands Retourner la liste des marques
 router.get('/', async (req, res) => {
+  // #swagger.summary = 'Get all brands'
+  // #swagger.description = 'Get all brands with name and logo'
   const brands = await Brand.find();
   res.json(brands);
 });

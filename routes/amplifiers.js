@@ -54,8 +54,6 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// TODO: POST /amplifiers Créer les données d'un ampli
-
 // TODO: PATCH /amplifiers/1 Modifier les données d'un ampli
 
 // TODO: DELETE /amplifiers/1 Supprimer les données d'un ampli (🗑️ en supprimer également ses presets)

@@ -4,7 +4,6 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const passport = require('passport');
-const LocalStrategy = require('passport-local');
 const passportMiddleware = require("./middlewares/passport")();
 const User = require("./models/User");
 
@@ -26,7 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(passportMiddleware.initialize());
-passport.use(new LocalStrategy(User.authenticate()));
+passport.use(User.createStrategy());
 
 app.use('/', indexRouter /* #swagger.ignore = true */);
 app.use('/', authRouter /* #swagger.ignore = true */);

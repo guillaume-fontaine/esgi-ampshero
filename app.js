@@ -11,6 +11,8 @@ const authRouter = require('./routes/auth');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const brandsRouter = require('./routes/brands');
+const amplifiersRouter = require('./routes/amplifiers');
+const presetsRouter = require('./routes/presets');
 
 var app = express();
 
@@ -31,6 +33,8 @@ app.use('/', indexRouter /* #swagger.ignore = true */);
 app.use('/', authRouter /* #swagger.ignore = true */);
 app.use('/users', usersRouter /* #swagger.tags = ['Users'] */);
 app.use('/brands', brandsRouter /* #swagger.tags = ['Brands'] */);
+app.use('/amplifiers', amplifiersRouter /* #swagger.tags = ['Amplifiers'] */);
+app.use('/presets', presetsRouter /* #swagger.tags = ['Presets'] */);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -3,7 +3,7 @@ const {Schema} = mongoose;
 
 const presetSchema = new Schema({
   name: {type: String, required: true},
-  user: { type: 'ObjectId', ref: 'user', required: true},
+  user: { type: 'ObjectId', ref: 'User', required: true},
   amp: { type: 'ObjectId', ref: 'Amplifier', required: true},
   musicId: {type: String, required: true},
   musicTitle: {type: String, required: true},

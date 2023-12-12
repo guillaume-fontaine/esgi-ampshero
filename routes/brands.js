@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
 
   res.json({
     page,
-    "hydra:totalItem": total,
+    "hydra:totalItems": total,
     brands
   });
 });

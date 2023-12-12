@@ -15,6 +15,8 @@ const presetSchema = new Schema({
     treble: {type: Number, min: 0, max: 10},
     middle: {type: Number, min: 0, max: 10},
   },
+}, {
+  timestamps: true
 });
 
 const Preset = mongoose.model('Preset', presetSchema);

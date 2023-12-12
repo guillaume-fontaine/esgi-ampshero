@@ -15,6 +15,8 @@ const amplifierSchema = new Schema({
     middle: Boolean,
   },
   presets: [{ type: 'ObjectId', ref: 'Preset' }]
+}, {
+  timestamps: true
 });
 
 const Amplifier = mongoose.model('Amplifier', amplifierSchema);
